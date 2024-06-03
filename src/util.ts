@@ -1,28 +1,27 @@
-
-import {parseArgsStringToArgv} from 'string-argv';
-import * as core from '@actions/core';
-import * as YAML from 'js-yaml';
-import {Toolkit} from 'actions-toolkit';
-import * as fs from 'fs';
-import {input, output} from './io';
+import { parseArgsStringToArgv } from "string-argv";
+import * as core from "@actions/core";
+import * as YAML from "js-yaml";
+import { Toolkit } from "actions-toolkit";
+import * as fs from "fs";
+import { input, output } from "./io";
 
 type RecordOf<T extends string> = Record<T, string | undefined>;
 export const tools = new Toolkit<RecordOf<input>, RecordOf<output>>({
   secrets: [
-    'GITHUB_EVENT_PATH',
-    'GITHUB_EVENT_NAME',
-    'GITHUB_REF',
-    'GITHUB_ACTOR',
+    "GITHUB_EVENT_PATH",
+    "GITHUB_EVENT_NAME",
+    "GITHUB_REF",
+    "GITHUB_ACTOR",
   ],
 });
 
 export async function getUserInfo(username?: string) {
   if (!username) return undefined;
 
-  const res = await tools.github.users.getByUsername({username});
+  const res = await tools.github.users.getByUsername({ username });
 
   core.debug(
-    `Fetched github actor from the API: ${JSON.stringify(res?.data, null, 2)}`
+    `Fetched github actor from the API: ${JSON.stringify(res?.data, null, 2)}`,
   );
 
   return {
@@ -78,7 +77,11 @@ export function parseInputArray(input: string): string[] {
   core.debug(`Parsing input array: ${input}`);
   try {
     const json = JSON.parse(input);
-    if (json && Array.isArray(json) && json.every(e => typeof e === 'string')) {
+    if (
+      json &&
+      Array.isArray(json) &&
+      json.every((e) => typeof e === "string")
+    ) {
       core.debug(`Input parsed as JSON array of length ${json.length}`);
       return json;
     }
@@ -86,20 +89,24 @@ export function parseInputArray(input: string): string[] {
 
   try {
     const yaml = YAML.load(input);
-    if (yaml && Array.isArray(yaml) && yaml.every(e => typeof e === 'string')) {
+    if (
+      yaml &&
+      Array.isArray(yaml) &&
+      yaml.every((e) => typeof e === "string")
+    ) {
       core.debug(`Input parsed as YAML array of length ${yaml.length}`);
       return yaml;
     }
   } catch {} // eslint-disable-line no-empty
 
-  core.debug('Input parsed as single string');
+  core.debug("Input parsed as single string");
   return [input];
 }
 
 export function readJSON(filePath: string) {
   let fileContent: string;
   try {
-    fileContent = fs.readFileSync(filePath, {encoding: 'utf8'});
+    fileContent = fs.readFileSync(filePath, { encoding: "utf8" });
   } catch {
     throw `Couldn't read file. File path: ${filePath}`;
   }
