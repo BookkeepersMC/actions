@@ -29,10 +29,10 @@ jobs:
       - name: Release
         working-directory: ./dist
         run: |
-        git config user.name github-actions
-        git config user.email github-actions@github.com
-        git add . --force
-        git commit --alow-empty -m "Update $GITHUB_SHA"
-        git tag -f -a -m "Update $GITHUB_SHA" v1
-        git push
-        git push --tags -f
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git add . --force
+          git commit --allow-empty -m "Update $GITHUB_SHA"
+          git tag -f -a -m "Update $GITHUB_SHA" v1
+          git push
+          git push --tags -f
