@@ -83,4 +83,8 @@ outputs:
 
 runs:
   using: node20
+
+branding:
+  icon: git-commit
+  color: blue
   
