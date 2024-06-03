@@ -1,0 +1,5 @@
+name: actions
+description: Custom GH actions for Notebook
+
+runs:
+  using: node20
