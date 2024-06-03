@@ -4,7 +4,6 @@ on:
     branches:
       - master
 
-# Release the actions
 jobs:
   build:
     runs-on: ubuntu-22.04
