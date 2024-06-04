@@ -79,12 +79,10 @@ outputs:
   tag_pushed:
     description: Whether the action has pushed a tag.
 
-
-
 runs:
   using: node20
+  main: lib/index.js
 
 branding:
   icon: git-commit
   color: blue
-  

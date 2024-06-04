@@ -1,13 +1,12 @@
 {
-    "compilerOptions": {
-        "target": "ES2022",
-        "lib": ["ES2023"],
-        "moduleResolution": "node",
-        "strict": true,
-        "forceConsistentCasingInFileNames": true,
-        "esModuleInterop": true,
-        "rootDir": "./src",
-        "outDir": "./lib"
-    },
-    "exclude": ["node_modules"]
+  "extends": "./node_modules/gts/tsconfig-google.json",
+  "compilerOptions": {
+    "rootDir": "./src",
+    "outDir": "./lib",
+    "declaration": false
+  },
+  "include": [
+    "src/**/*.ts",
+    "test/**/*.ts"
+  ]
 }
