@@ -81,7 +81,7 @@ outputs:
 
 runs:
   using: node20
-  main: lib/index.js
+  main: index.js
 
 branding:
   icon: git-commit
