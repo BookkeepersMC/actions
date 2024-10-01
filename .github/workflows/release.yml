@@ -20,8 +20,8 @@ jobs:
           git clean -fxd 
       - name: Build
         run: |
-          npm install
-          npm run all
+          pnpm i --shamefully-hoist=true
+          pnpm run all
           cp action.yml dist/action.yml
       - name: Release
         working-directory: ./dist
