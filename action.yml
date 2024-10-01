@@ -1,4 +1,5 @@
-name: Actions
+name: BookkeepersMC Actions
+description: Custom GH action scripts for BookkeepersMC
 inputs:
   context:
     description: "Valid context: [changelog | labeled | unlabeled]"
@@ -26,3 +27,6 @@ outputs:
 runs:
   using: node20
   main: index.js
+branding:
+  icon: play
+  color: blue
