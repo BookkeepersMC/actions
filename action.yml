@@ -1,0 +1,28 @@
+name: Actions
+inputs:
+  context:
+    description: "Valid context: [changelog | labeled | unlabeled]"
+    required: true
+  github-token:
+    description: The GitHub token used to create an authenticated client
+    default: ${{ github.token }}
+    required: false
+  workflow_id:
+    description: The workflow id of the action, usually the filename.
+    required: false
+  issue-number:
+    description: The Github issue number
+    default: ${{ github.event.number }}
+    required: false
+  commit_regex:
+    description: A regular expression used to filter out commits.
+    required: false
+  label:
+    description: The label name for use with the labeled or unlabeled scripts.
+    required: false
+outputs:
+  changelog:
+    description: "The generated changelog"
+runs:
+  using: node20
+  main: index.js
